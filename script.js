@@ -43,7 +43,23 @@ function mostrarSeccionContacto(){
 }
 linkContacto.addEventListener("click",mostrarSeccionContacto);
 
+const formulario = document.getElementById("form-contacto");
 
+formulario.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+    const mensaje = document.getElementById("mensaje").value;
+
+    alert("Mensaje enviado por " + nombre);
+
+    console.log("Nombre:", nombre);
+    console.log("Correo:", correo);
+    console.log("Mensaje:", mensaje);
+
+    formulario.reset();
+});
 
 //cambiar tema
 

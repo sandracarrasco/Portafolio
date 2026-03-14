@@ -24,17 +24,26 @@
     </nav>
 </header>
 <section id="inicio">
-    <p> Hola soy</p>
-    <H4><b>CARMELA SANDRA</b></H4>
-    <H4>CALLICONDE CARRASCO</H4>
 
-    <p>QA, Desarrolladora Backend...</p>
-    <button id="ver-proyectos">Ver Mis Proyectos </button>
-    <button id="btn-tema">Cambiar Tema</button>
+    <div class="hero">
 
-    <div class="hero-img">
-        <img src="perfil.jpg" alt="Foto perfil">
+        <div class="hero-text">
+            <p>Hola soy</p>
+            <h1>Carmela Sandra</h1>
+            <h2>Calliconde Carrasco</h2>
+            <p>QA | Desarrolladora Backend</p>
+
+            <button id="ver-proyectos">Ver Mis Proyectos</button>
+            <button id="btn-tema">Cambiar Tema</button>
+
+        </div>
+
+        <div class="hero-img">
+            <img src="perfil.jpg" alt="foto perfil">
+        </div>
+
     </div>
+
 </section>
 <section>
 
@@ -87,13 +96,24 @@
         </div>
     </div>
 </section>
-<section id="contacto">
-    <H3>CONTACTO</H3>
-    <div class="contacto">
-        <p>NOMBRE</p>
-        <p>CORREO</p>
-        <p>MENSAJE</p>
-    </div>
+<form id="form-contacto">
+    <h4>CONTACTO</h4>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" placeholder="NOMBRE" required>
+
+    <label for="correo">Correo</label>
+    <input type="email" id="correo" name="correo" placeholder="CORREO" required>
+
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" name="mensaje" rows="5" placeholder="MENSAJE"></textarea>
+
+    <button type="submit">Enviar</button>
+
+</form>
+<section id="redes">
+    <h3>Mis redes</h3>
+    <a href="https://github.com/sandracarrasco">GitHub</a>
+    <a href="https://linkedin.com">LinkedIn</a>
 </section>
 <footer>
     <p>&copy; 2026 Carmela Calliconde. Todos los derechos reservados</p>
