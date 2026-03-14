@@ -1,0 +1,163 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+/* Selector de TIPO (etiqueta) afectar a todo el cuerpo de la pagina*/
+body{
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background: #f5f5f5;
+}
+
+/* Selector de TIPO (etiqueta) afectar a todo el encabezado*/
+header{
+    background: #333;
+    color:#fff;
+    padding:20px;
+    text-align: center;
+}
+
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    display:inline-block;
+    margin: 0 20px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.proyecto-card{
+    border: 1px solid #ddd;
+    padding: 40px;
+    margin: 40px;
+    border-radius: 10px;
+}
+h3{
+    text-align: center;
+    font-weight: bold;
+}
+#contacto{
+   text-align: center;
+    padding: 40px;
+}
+#skills{
+    text-align: center;
+    padding: 40px;
+}
+#experiencia{
+    text-align: center;
+    padding: 40px;
+}
+footer{
+    text-align: center;
+}
+#inicio{
+    padding: 70px;
+
+}
+.contenidos{
+
+    text-align: center;
+    padding: 40px;
+}
+
+.proyecto-card{
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 160px; /* mismo tamaño mínimo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.proyecto-card h3,
+.proyecto-card p,
+.proyecto-card a{
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+#contenedor-proyectos{
+    display: grid;
+    background: #e0f7fa;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+#btn-cv{
+    padding: 10px 25px;
+    border: 2px solid black;
+    border-radius: 30px; /* hace el botón ovalado */
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+#btn-tema{
+    padding: 10px 25px;
+    border: 2px solid black;
+    border-radius: 30px; /* hace el botón ovalado */
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+#ver-proyectos{
+    padding: 10px 25px;
+    border: 2px solid black;
+    border-radius: 30px; /* hace el botón ovalado */
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*MEDIA QUERYS*/
+
+
+
+@media screen and (max-width: 600px) {
+
+    nav ul li{
+        display: block;
+        margin: 10px 0;
+    }
+    .proyecto-card{
+        width: 100%;
+    }
+}
+/*
+@media screen and (min-width: 601 px) and (max-width: 900 px){
+    #contenedor-proyectos{
+        justify-content: space-around;
+        gap: 10px;
+    }
+    .proyecto-card{
+        width: 45%;
+    }
+    h3{
+        font-size: 1.5 em;
+    }
+}
+*/
+@media (prefers-color-scheme: dark){
+    body{
+        background: #121212;
+        color: #e0e0e0;
+    }
+    header{
+        background: #1f1f1f;
+    }
+    .proyecto-card{
+        background: #1e1e1e;
+        border: 1px solid #333;
+        color: #e0e0e0;
+    }
+    .proyecto-card a{
+        color: #90caf9;
+    }
+}
