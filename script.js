@@ -61,7 +61,7 @@ linkExperiencia.addEventListener("click",mostrarSeccionExperiencia);
 
 const linkContacto = document.getElementById("contactos");
 function mostrarSeccionContacto(){
-    const section= document.getElementById("contacto");
+    const section= document.getElementById("form-contacto");
     section.scrollIntoView({behavior:"smooth"});
 }
 linkContacto.addEventListener("click",mostrarSeccionContacto);
@@ -120,51 +120,7 @@ todasLasTarjetas.forEach(tarjeta=> {
     })
 })
 
-//entender la visibilidad de las variable y la memoria de las funciones
-/*function  crearContadorDeProyectos(inicial){
-    let contador =inicial;
-    return {
-        incrementar:function (){
-            contador++;
-            return `Ahora tienes ${contador} proyectos.`;
-        },
-        obtenerTotal:()=> contador
-    };
-}
-const  miContador= crearContadorDeProyectos(4);
-console.log(miContador.incrementar());
-console.log(miContador.contador);
 
-function crearRastreador(){
-    let conteo=0;
-    return function (){
-        conteo++;
-        return 'has intentado ver los proyectos $(conteo)';
-    };
-}
-
-const rastrearClick = crearRastreador();
-console.log(rastrearClick());
-console.log(rastrearClick());
-
-//mutaciones
-const misProyectos=[
-    {nombre:"E-commerce",techs:["React","Node.js"]},
-    {nombre:"Blog Personal",techs:["Gatsby","GraphQL"]},
-    {nombre:"App de tareas",techs:["Vue","Gatsby"]}
-]
-
-//usaremos reduce para contar ocurrencias de cada tecnologia en los proyectos
-
-const stackStats = misProyectos.flatMap(p=> p.techs).reduce((acc,tech)=> {
-    acc[tech] = (acc[tech] || 0)+1;
-    return acc;
-},{});
-console.log(stackStats);
-
-const proyectosReact = misProyectos.filter(p => p.techs.includes("React"));
-
-const nombresProyectos= misProyectos.map(p=> p.nombre);*/
 
 async function cargarProyectos() {
     const contenedor = document.getElementById("contenedor-proyectos");
