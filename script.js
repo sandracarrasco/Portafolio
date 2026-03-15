@@ -24,7 +24,30 @@ function mostrarSeccionSkill(){
 }
 linkSkill.addEventListener("click",mostrarSeccionSkill);
 
+function animateSkills() {
+    document.querySelectorAll(".skill-fill").forEach((bar) => {
+        const rect = bar.closest(".skill-card").getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+            bar.style.width = bar.style.getPropertyValue("--pct") ||
+                getComputedStyle(bar).getPropertyValue("--pct");
+        }
+    });
+}
+function revealOnScroll() {
+    document.querySelectorAll(".reveal").forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+            el.classList.add("visible");
+        }
+    });
+    animateSkills();
+}
+document.querySelectorAll(
+    ".about-card, .stat, .skill-card, .timeline-item, .proyecto-card, .contact-info, #form-contacto"
+).forEach((el) => el.classList.add("reveal"));
 
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
 
 const linkExperiencia = document.getElementById("experiencias");
 function mostrarSeccionExperiencia(){
@@ -98,7 +121,7 @@ todasLasTarjetas.forEach(tarjeta=> {
 })
 
 //entender la visibilidad de las variable y la memoria de las funciones
-function  crearContadorDeProyectos(inicial){
+/*function  crearContadorDeProyectos(inicial){
     let contador =inicial;
     return {
         incrementar:function (){
@@ -141,27 +164,46 @@ console.log(stackStats);
 
 const proyectosReact = misProyectos.filter(p => p.techs.includes("React"));
 
-const nombresProyectos= misProyectos.map(p=> p.nombre);
+const nombresProyectos= misProyectos.map(p=> p.nombre);*/
 
-async function cargarProyectos(){
-    try{
-        const response = await fetch("https://api.github.com/users/sandracarrasco/repos");
-        if(!response.ok){
-            throw new Error("Error al cargar los proyectos");
+async function cargarProyectos() {
+    const contenedor = document.getElementById("contenedor-proyectos");
+    try {
+        const response = await fetch("https://api.github.com/users/sandracarrasco/repos?sort=updated&per_page=12");
+        if (!response.ok) throw new Error("Error al cargar proyectos");
+        const repos = await response.json();
+
+        contenedor.innerHTML = "";
+
+        if (!repos.length) {
+            contenedor.innerHTML = `<p style="font-family: var(--font-mono); color: var(--text-dim); grid-column: 1/-1;">// No se encontraron repositorios públicos.</p>`;
+            return;
         }
-        const proyectos= await response.json();
-        const contenedorProyectos= document.getElementById("contenedor-proyectos");
-        contenedorProyectos.innerHTML=""; // limpiar
-        proyectos.forEach(proyecto => {
-            contenedorProyectos.innerHTML +=`
-                <div class="proyecto-card">
-                    <h3>${proyecto.name}</h3>
-                    <p>${proyecto.description || "Sin descripción"}</p>
-                    <a href="${proyecto.html_url}" target="_blank"> Ver en GitHub</a>
-                </div>`;
+
+        repos.forEach((repo, i) => {
+            const card = document.createElement("div");
+            card.className = "proyecto-card reveal";
+            card.style.animationDelay = `${i * 0.08}s`;
+            card.innerHTML = `
+        <h3>${repo.name.replace(/-/g, " ").toUpperCase()}</h3>
+        <p>${repo.description || "Sin descripción disponible."}</p>
+        <a href="${repo.html_url}" target="_blank">→ VER EN GITHUB</a>
+      `;
+            card.addEventListener("click", () => window.open(repo.html_url, "_blank"));
+            contenedor.appendChild(card);
         });
-    }catch (error){
-        console.log("Error:",error);
+
+        // Re-run reveal observer for new cards
+        revealOnScroll();
+
+    } catch (err) {
+        console.error("Error:", err);
+        contenedor.innerHTML = `
+      <div class="proyecto-card"><h3>PROYECTO WEB QA</h3><p>Suite de automatización con Selenium y Playwright para testing de regresión.</p></div>
+      <div class="proyecto-card"><h3>BACKEND API</h3><p>API RESTful desarrollada en Python con autenticación JWT y base de datos PostgreSQL.</p></div>
+      <div class="proyecto-card"><h3>TEST FRAMEWORK</h3><p>Framework de testing personalizado con reportes automáticos y CI/CD integrado.</p></div>
+    `;
     }
 }
+
 cargarProyectos();
